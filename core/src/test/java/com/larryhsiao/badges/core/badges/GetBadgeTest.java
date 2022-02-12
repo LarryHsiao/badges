@@ -15,7 +15,7 @@ class GetBadgeTest {
      */
     @Test
     void getCreatedBadge() throws Exception {
-        final BadgeRepository repo = new TestingRepoFactory().badge();
+        final BadgeRepository repo = new TestingRepoFactory().badges();
         new CreatedBadge(
             repo,
             "name",

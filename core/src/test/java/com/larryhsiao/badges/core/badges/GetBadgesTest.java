@@ -18,7 +18,7 @@ class GetBadgesTest {
      */
     @Test
     void noException() {
-        final BadgeRepository repo = new TestingRepoFactory().badge();
+        final BadgeRepository repo = new TestingRepoFactory().badges();
         assertEquals(0, new GetBadges(repo).value().size());
     }
 
@@ -27,7 +27,7 @@ class GetBadgesTest {
      */
     @Test
     void insertBadge() throws Exception {
-        final BadgeRepository repo = new TestingRepoFactory().badge();
+        final BadgeRepository repo = new TestingRepoFactory().badges();
         new CreatedBadge(repo, "name", "description", "iconUrl").value();
         final List<Badge> badges = new GetBadges(repo).value();
         final Badge created = badges.get(0);
