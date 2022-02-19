@@ -6,7 +6,7 @@ group 'com.larryhsiao.badges'
 version "$badgeVersionName"
 
 dependencies {
-    implementation 'com.larryhsiao:clotho:2.0.1'
+    implementation 'com.larryhsiao:clotho:2.0.2'
     testImplementation project(":data-memory")
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'

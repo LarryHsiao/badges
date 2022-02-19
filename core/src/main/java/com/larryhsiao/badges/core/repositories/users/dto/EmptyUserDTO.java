@@ -1,6 +1,6 @@
 package com.larryhsiao.badges.core.repositories.users.dto;
 
-public class EmptyUser implements UserDTO {
+public class EmptyUserDTO implements UserDTO {
     @Override
     public long id() {
         return -1;
