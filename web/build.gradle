@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName = "com.larryhsiao.badges.web.Main"
+group 'com.larryhsiao.badges'
+version "$badgeVersionName"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(":core")
+    implementation project(":data-memory")
+    implementation group: 'org.takes', name: 'takes', version: '1.11.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+test {
+    useJUnitPlatform()
+}

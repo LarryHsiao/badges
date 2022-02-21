@@ -1,4 +1,5 @@
 rootProject.name = 'badges'
 include 'core'
 include 'data-memory'
+include 'web'
 
