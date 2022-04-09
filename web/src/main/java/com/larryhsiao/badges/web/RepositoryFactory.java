@@ -1,4 +1,4 @@
-package com.larryhsiao.badges.web.repositories;
+package com.larryhsiao.badges.web;
 
 import com.larryhsiao.badges.core.repositories.badges.BadgeRepository;
 import com.larryhsiao.badges.core.repositories.badges.UserBadgeRepository;
@@ -24,14 +24,23 @@ public class RepositoryFactory {
     ));
     private final UserBadgeRepository userBadges = new MemoryUserBadgeRepository();
 
+    /**
+     * @return Generate the badge repository.
+     */
     public BadgeRepository badges() {
         return badges;
     }
 
+    /**
+     * @return Generate the user repository.
+     */
     public UserRepository users() {
         return users;
     }
 
+    /**
+     * @return User-badge related repository.
+     */
     public UserBadgeRepository userBadges() {
         return userBadges;
     }

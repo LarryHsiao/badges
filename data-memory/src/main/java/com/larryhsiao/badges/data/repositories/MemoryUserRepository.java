@@ -15,15 +15,23 @@ import java.util.stream.Collectors;
 /**
  * Memory implementation of {@link UserRepository}.
  */
-public class MemoryUserRepository implements UserRepository {
+public final class MemoryUserRepository implements UserRepository {
     private final Map<Long, UserDTO> users = new HashMap<>();
     private final UserDTO currentUser = new EmptyUserDTO();
 
+    /**
+     * Ctor.
+     */
     public MemoryUserRepository() {
         this(Collections.emptyList());
     }
 
-    public MemoryUserRepository(List<UserDTO> defaultUsers) {
+    /**
+     * Ctor.
+     *
+     * @param defaultUsers Pre-set users.
+     */
+    public MemoryUserRepository(final List<UserDTO> defaultUsers) {
         users.putAll(
             defaultUsers.stream().collect(
                 Collectors.toMap(UserDTO::id, Function.identity())

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class MemoryUserBadgeRepository implements UserBadgeRepository {
+public final class MemoryUserBadgeRepository implements UserBadgeRepository {
     /**
      * Key: UserId
      * Value: List of {@link UserBadgeDTO} that user had.
@@ -18,7 +18,7 @@ public class MemoryUserBadgeRepository implements UserBadgeRepository {
     private final Map<Long, List<UserBadgeDTO>> data = new HashMap<>();
 
     @Override
-    public void createUserBadge(long userId, long badgeId) {
+    public void createUserBadge(final long userId, final long badgeId) {
         List<UserBadgeDTO> userBadges = data.computeIfAbsent(userId, k -> new ArrayList<>());
         final boolean exist = userBadges.stream()
             .anyMatch(userBadgeDTO -> userBadgeDTO.badgeId() == badgeId);
@@ -32,7 +32,7 @@ public class MemoryUserBadgeRepository implements UserBadgeRepository {
     }
 
     @Override
-    public void removeUserBadge(long userId, long badgeId) {
+    public void removeUserBadge(final long userId, final long badgeId) {
         List<UserBadgeDTO> userBadges = data.get(userId);
         if (userBadges != null) {
             final Optional<UserBadgeDTO> existBadge = userBadges.stream()
@@ -43,21 +43,21 @@ public class MemoryUserBadgeRepository implements UserBadgeRepository {
     }
 
     @Override
-    public void removeBadge(long badgeId) {
+    public void removeBadge(final long badgeId) {
         for (List<UserBadgeDTO> value : data.values()) {
             value.removeIf(userBadgeDTO -> userBadgeDTO.badgeId() == badgeId);
         }
     }
 
     @Override
-    public void removeUser(long userId) {
+    public void removeUser(final long userId) {
         for (List<UserBadgeDTO> value : data.values()) {
             value.removeIf(userBadgeDTO -> userBadgeDTO.userId() == userId);
         }
     }
 
     @Override
-    public List<UserBadgeDTO> getUserBadges(long userId) {
+    public List<UserBadgeDTO> getUserBadges(final long userId) {
         return data.computeIfAbsent(userId, it -> new ArrayList<>());
     }
 }

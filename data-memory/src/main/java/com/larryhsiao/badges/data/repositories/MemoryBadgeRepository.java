@@ -10,13 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
  * Memory implementation of {@link BadgeRepository}.
  */
-public class MemoryBadgeRepository implements BadgeRepository {
+public final class MemoryBadgeRepository implements BadgeRepository {
     private final Map<Long, BadgeDTO> data = new HashMap<>();
     private int id = 1;
 
@@ -26,7 +25,7 @@ public class MemoryBadgeRepository implements BadgeRepository {
     }
 
     @Override
-    public long insert(String name, String description, String iconUrl) {
+    public long insert(final String name, final String description, final String iconUrl) {
         final BadgeDTO createdBadge = new ConstBadgeDTO(
             id++,
             name,
@@ -38,7 +37,7 @@ public class MemoryBadgeRepository implements BadgeRepository {
     }
 
     @Override
-    public BadgeDTO get(long id) throws NotFoundException {
+    public BadgeDTO get(final long id) throws NotFoundException {
         final BadgeDTO badge = data.get(id);
         if (badge == null) {
             throw new NotFoundException();
@@ -47,7 +46,7 @@ public class MemoryBadgeRepository implements BadgeRepository {
     }
 
     @Override
-    public List<BadgeDTO> get(Set<Long> ids) {
+    public List<BadgeDTO> get(final Set<Long> ids) {
         return data.values()
             .stream()
             .filter(badgeDTO -> ids.contains(badgeDTO.id()))
@@ -55,7 +54,7 @@ public class MemoryBadgeRepository implements BadgeRepository {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(final long id) {
         data.remove(id);
     }
 }
