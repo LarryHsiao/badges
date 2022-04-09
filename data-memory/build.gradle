@@ -19,3 +19,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+tasks.test.dependsOn("checkstyleMain")
+tasks.test.dependsOn("checkstyleTest")

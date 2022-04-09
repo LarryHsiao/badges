@@ -9,7 +9,15 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+/**
+ * Test for {@link  RemoveBadge}.
+ */
 class RemoveBadgeTest {
+    /**
+     * Check if remove badge actually remove the badge.
+     *
+     * @throws Exception Manipulation may failed.
+     */
     @Test
     void normalCase() throws Exception {
         final TestingRepoFactory factory = new TestingRepoFactory();

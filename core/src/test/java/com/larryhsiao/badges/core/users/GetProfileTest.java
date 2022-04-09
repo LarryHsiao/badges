@@ -4,7 +4,7 @@ import com.larryhsiao.badges.core.repositories.TestingRepoFactory;
 import com.larryhsiao.badges.core.repositories.users.UserRepository;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link GetProfile}.

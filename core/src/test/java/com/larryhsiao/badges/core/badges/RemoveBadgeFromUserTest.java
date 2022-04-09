@@ -9,11 +9,21 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+/**
+ * Test for {@link  RemoveBadgeFromUser}.
+ */
 class RemoveBadgeFromUserTest {
+    /**
+     * Check If removing badge from user is success.
+     *
+     * @throws Exception Manipulate data may fail.
+     */
     @Test
     void normalCase() throws Exception {
         final TestingRepoFactory factory = new TestingRepoFactory();
-        final Badge badge = new CreateBadge(factory.badges()).execute("badge", "desc", "");
+        final Badge badge = new CreateBadge(
+            factory.badges()
+        ).execute("badge", "desc", "");
         final long userId = factory.users()
             .all()
             .stream()

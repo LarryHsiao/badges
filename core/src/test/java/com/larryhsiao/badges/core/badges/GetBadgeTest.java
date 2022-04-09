@@ -5,7 +5,9 @@ import com.larryhsiao.badges.core.repositories.TestingRepoFactory;
 import com.larryhsiao.badges.core.repositories.badges.BadgeRepository;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Test for {@link GetBadge}.
@@ -17,17 +19,8 @@ class GetBadgeTest {
     @Test
     void getCreatedBadge() throws Exception {
         final BadgeRepository repo = new TestingRepoFactory().badges();
-        new CreateBadge(
-            repo
-        ).execute(
-            "name",
-            "description",
-            "iconUrl"
-        );
-        assertEquals(
-            1,
-            new GetBadge(repo).execute(1).id()
-        );
+        new CreateBadge(repo).execute("name", "description", "iconUrl");
+        assertEquals(1, new GetBadge(repo).execute(1).id());
     }
 
     /**
@@ -39,24 +32,23 @@ class GetBadgeTest {
             final BadgeRepository repo = new TestingRepoFactory().badges();
             new GetBadge(repo).execute(1);
             fail();
-        }catch (NotFoundException e){
+        } catch (NotFoundException e) {
             assertTrue(true);
         }
     }
-
 
     /**
      * Check if there is {@link NotFoundException} thrown when badge is deleted.
      */
     @Test()
-    void notFoundExceptionDeleted() throws Exception{
+    void notFoundExceptionDeleted() throws Exception {
         try {
             final BadgeRepository repo = new TestingRepoFactory().badges();
             new CreateBadge(repo).execute("name", "", "");
             new DeleteBadge(repo).execute(1);
             new GetBadge(repo).execute(1);
             fail();
-        }catch (NotFoundException e){
+        } catch (NotFoundException e) {
             assertTrue(true);
         }
     }

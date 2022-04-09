@@ -24,14 +24,23 @@ public class TestingRepoFactory {
     ));
     private final UserBadgeRepository userBadges = new MemoryUserBadgeRepository();
 
+    /**
+     * @return BadgeRepository.
+     */
     public BadgeRepository badges() {
         return badges;
     }
 
+    /**
+     * @return UserRepository
+     */
     public UserRepository users() {
         return users;
     }
 
+    /**
+     * @return User-badge repository.
+     */
     public UserBadgeRepository userBadges() {
         return userBadges;
     }
