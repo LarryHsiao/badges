@@ -13,7 +13,7 @@ class RemoveBadgeTest {
     @Test
     void normalCase() throws Exception {
         final TestingRepoFactory factory = new TestingRepoFactory();
-        final Badge badge = new CreatedBadge(factory.badges(), "badge", "desc", "").value();
+        final Badge badge = new CreateBadge(factory.badges()).execute("badge", "desc", "");
         final long userId = factory.users()
             .all()
             .stream()
@@ -21,13 +21,12 @@ class RemoveBadgeTest {
             .orElse(new EmptyUserDTO())
             .id();
 
-        new AddBadgeToUser(factory.userBadges(), badge.id(), userId).execute();
-        new RemoveBadge(factory.badges(), factory.userBadges(), badge.id()).execute();
+        new AddBadgeToUser(factory.userBadges()).execute(badge.id(), userId);
+        new RemoveBadge(factory.badges(), factory.userBadges()).execute(badge.id());
         final List<UserBadge> userBadges = new GetUserBadges(
             factory.badges(),
-            factory.userBadges(),
-            userId
-        ).value();
+            factory.userBadges()
+        ).execute(userId);
         Assertions.assertEquals(0, userBadges.size());
     }
 }

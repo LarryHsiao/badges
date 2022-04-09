@@ -13,15 +13,14 @@ import java.util.stream.Collectors;
 /**
  * Get all badges available in system.
  */
-public class GetBadges implements Source<List<Badge>> {
+public class GetBadges {
     private final BadgeRepository repo;
 
     public GetBadges(BadgeRepository repo) {
         this.repo = repo;
     }
 
-    @Override
-    public List<Badge> value() {
+    public List<Badge> execute() {
         return repo.all()
             .stream()
             .map((Function<BadgeDTO, Badge>) DTOBadge::new)

@@ -17,23 +17,19 @@ import java.util.stream.Collectors;
 /**
  * Source to get badges which own by a user.
  */
-public class GetUserBadges implements Source<List<UserBadge>> {
+public class GetUserBadges {
     private final BadgeRepository badgeRepo;
     private final UserBadgeRepository userBadgeRepo;
-    private final long userId;
 
     public GetUserBadges(
         BadgeRepository badgeRepo,
-        UserBadgeRepository userBadgeRepo,
-        long userId
+        UserBadgeRepository userBadgeRepo
     ) {
         this.badgeRepo = badgeRepo;
         this.userBadgeRepo = userBadgeRepo;
-        this.userId = userId;
     }
 
-    @Override
-    public List<UserBadge> value() {
+    public List<UserBadge> execute(long userId) {
         final List<UserBadgeDTO> userBadges = userBadgeRepo.getUserBadges(userId);
         final Map<Long, Badge> badges = badgeRepo.get(
             userBadges.stream()

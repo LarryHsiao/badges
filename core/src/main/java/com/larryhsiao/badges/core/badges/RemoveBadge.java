@@ -4,24 +4,19 @@ import com.larryhsiao.badges.core.repositories.badges.BadgeRepository;
 import com.larryhsiao.badges.core.repositories.badges.UserBadgeRepository;
 import com.larryhsiao.clotho.Action;
 
-public class RemoveBadge implements Action {
+public class RemoveBadge {
     private final BadgeRepository badgeRepo;
     private final UserBadgeRepository userBadgeRepo;
-    ;
-    private final long badgeId;
 
     public RemoveBadge(
         BadgeRepository badgeRepo,
-        UserBadgeRepository userBadgeRepo,
-        long badgeId
+        UserBadgeRepository userBadgeRepo
     ) {
         this.badgeRepo = badgeRepo;
         this.userBadgeRepo = userBadgeRepo;
-        this.badgeId = badgeId;
     }
 
-    @Override
-    public void execute() {
+    public void execute(long badgeId) {
         badgeRepo.delete(badgeId);
         userBadgeRepo.removeBadge(badgeId);
     }

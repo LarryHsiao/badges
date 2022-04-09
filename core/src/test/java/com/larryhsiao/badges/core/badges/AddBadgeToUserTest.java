@@ -12,11 +12,14 @@ class AddBadgeToUserTest {
     @Test
     void normalCase() throws Exception {
         final TestingRepoFactory factory = new TestingRepoFactory();
-        final Badge badge = new CreatedBadge(factory.badges(), "badge", "desc", "").value();
+        final Badge badge = new CreateBadge(factory.badges()).execute("badge", "desc", "");
         final long userId = factory.users().all().stream().findFirst().get().id();
 
-        new AddBadgeToUser(factory.userBadges(), badge.id(), userId).execute();
-        final List<UserBadge> userBadges = new GetUserBadges(factory.badges(), factory.userBadges(), userId).value();
+        new AddBadgeToUser(factory.userBadges()).execute(badge.id(), userId);
+        final List<UserBadge> userBadges = new GetUserBadges(
+            factory.badges(),
+            factory.userBadges()
+        ).execute(userId);
         Assertions.assertEquals(1, userBadges.size());
     }
 }

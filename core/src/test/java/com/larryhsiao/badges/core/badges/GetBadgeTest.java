@@ -16,15 +16,16 @@ class GetBadgeTest {
     @Test
     void getCreatedBadge() throws Exception {
         final BadgeRepository repo = new TestingRepoFactory().badges();
-        new CreatedBadge(
-            repo,
+        new CreateBadge(
+            repo
+        ).execute(
             "name",
             "description",
             "iconUrl"
-        ).value();
+        );
         assertEquals(
             1,
-            new GetBadge(repo, 1).value().id()
+            new GetBadge(repo).execute(1).id()
         );
     }
 }
