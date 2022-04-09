@@ -1,11 +1,23 @@
 package com.larryhsiao.badges.core.repositories.badges.dto;
 
-public class ConstUserBadgeDTO implements UserBadgeDTO{
+/**
+ * {@link UserBadgeDTO} implements with constants.
+ */
+public final class ConstUserBadgeDTO implements UserBadgeDTO {
     private final long userId;
     private final long badgeId;
     private final long createdTime;
 
-    public ConstUserBadgeDTO(long userId, long badgeId, long createdTime) {
+    /**
+     * @param userId      User ID.
+     * @param badgeId     Badge ID.
+     * @param createdTime The createTime.
+     */
+    public ConstUserBadgeDTO(
+        final long userId,
+        final long badgeId,
+        final long createdTime
+    ) {
         this.userId = userId;
         this.badgeId = badgeId;
         this.createdTime = createdTime;

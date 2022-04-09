@@ -2,10 +2,23 @@ package com.larryhsiao.badges.core.users.entities;
 
 import com.larryhsiao.badges.core.repositories.users.dto.UserDTO;
 
-public class DTOUser implements User{
+/**
+ * User object implemented with {@link UserDTO}.
+ */
+public final class DTOUser implements User {
+    /**
+     * Dto reference.
+     */
     private final UserDTO dto;
 
-    public DTOUser(UserDTO dto) {this.dto = dto;}
+    /**
+     * Ctor.
+     *
+     * @param userDTO dto of user.
+     */
+    public DTOUser(final UserDTO userDTO) {
+        this.dto = userDTO;
+    }
 
     @Override
     public long id() {

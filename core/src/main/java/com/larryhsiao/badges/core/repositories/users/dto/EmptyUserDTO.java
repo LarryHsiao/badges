@@ -1,6 +1,10 @@
 package com.larryhsiao.badges.core.repositories.users.dto;
 
-public class EmptyUserDTO implements UserDTO {
+/**
+ * Empty object for represents a user we have no idea who it is.
+ * Typically, we use this object as placeholder.
+ */
+public final class EmptyUserDTO implements UserDTO {
     @Override
     public long id() {
         return -1;

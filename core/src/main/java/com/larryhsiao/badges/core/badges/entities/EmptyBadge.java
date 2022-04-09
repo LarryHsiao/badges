@@ -3,7 +3,7 @@ package com.larryhsiao.badges.core.badges.entities;
 /**
  * {@link Badge} with nothing.
  */
-public class EmptyBadge implements Badge {
+public final class EmptyBadge implements Badge {
     @Override
     public long id() {
         return -1L;

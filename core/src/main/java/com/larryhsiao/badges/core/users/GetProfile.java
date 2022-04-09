@@ -8,10 +8,16 @@ import com.larryhsiao.clotho.Source;
 /**
  * Source to get profile of current user.
  */
-public class GetProfile implements Source<User> {
+public final class GetProfile implements Source<User> {
     private final UserRepository repo;
 
-    public GetProfile(UserRepository repo) {this.repo = repo;}
+    /**
+     * Ctor.
+     * @param userRepository User repository.
+     */
+    public GetProfile(final UserRepository userRepository) {
+        this.repo = userRepository;
+    }
 
     @Override
     public User value() {
